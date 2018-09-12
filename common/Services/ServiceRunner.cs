@@ -15,8 +15,7 @@ namespace Common.Services
                     s.ConstructUsing(name => service);
                     s.WhenStarted((tc, hostControl) => {
                         tc.OnClusterShutdown += (sender, e) => hostControl.Stop();
-                        tc.Start();
-                        return true;
+                        return tc.Start();
                     });
                     s.WhenStopped(tc => tc.Stop());
                 });
